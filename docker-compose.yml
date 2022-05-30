@@ -4,16 +4,16 @@ services:
     image: mariadb:latest
     container_name: go-bookstore-db
     environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: go_database
-      MARIADB_USER: go_test
-      MARIADB_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
       TZ: 'Europe/Helsinki'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - db-data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - ${DB_PORT}:${DB_PORT}
     networks:
       - go-crud
   phpmyadmin:
@@ -22,9 +22,9 @@ services:
     depends_on:
       - db
     environment:
-      - PMA_USER=go_test
-      - PMA_PORT=3306
-      - PMA_PASSWORD=password
+      - PMA_USER=${DB_USER}
+      - PMA_PORT=${DB_PORT}
+      - PMA_PASSWORD=${DB_PASSWORD}
     ports:
       - 9090:80
     restart: always
