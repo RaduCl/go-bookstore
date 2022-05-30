@@ -10,5 +10,10 @@ docker, docker-compose, golang > 1.6
 
 set and load the .env variables onto the local host machine env
 ```bash
+eval $(cat .env | sed 's/^/export /')
+```
+
+start the app
+```bash
 go run main.go
 ```
