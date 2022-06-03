@@ -13,7 +13,12 @@ var (
 )
 
 func Connect() {
-	dsn := fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True", os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_NAME"))
+	dsn := fmt.Sprintf(
+		"%s:%s@/%s?charset=utf8&parseTime=True",
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME"),
+	)
 
 	d, err := gorm.Open("mysql", dsn)
 

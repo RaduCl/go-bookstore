@@ -1,6 +1,8 @@
 package models
 
 import (
+	"time"
+
 	"github.com/jinzhu/gorm"
 	"github.com/raducl/go-bookstore/pkg/config"
 )
@@ -8,10 +10,14 @@ import (
 var db *gorm.DB
 
 type Book struct {
-	gorm.Model
-	Name        string `gorm:"" json:"name"`
-	Author      string `json:"author"`
-	Publication string `json:"publication"`
+	// gorm.Model
+	ID          uint      `json:"id"`
+	Name        string    `json:"name"`
+	Author      string    `json:"author"`
+	Publication string    `json:"publication"`
+	CreatedAt   time.Time `json:"-"`
+	UpdatedAt   time.Time `json:"-"`
+	DeletedAt   time.Time `json:"-"`
 }
 
 func init() {
